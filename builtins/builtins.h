@@ -6,7 +6,7 @@
 /*   By: hbecki <hbecki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 12:25:36 by hbecki            #+#    #+#             */
-/*   Updated: 2022/05/30 14:51:13 by hbecki           ###   ########.fr       */
+/*   Updated: 2022/06/01 14:59:31 by hbecki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include "../libft/libft.h"
+# define MAXDIR 256
 
 typedef struct s_env{
 	char			*key;
