@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   pipex_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bogdantiyanich <bogdantiyanich@student.    +#+  +:+       +#+        */
+/*   By: hbecki <hbecki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/10 20:07:16 by hbecki            #+#    #+#             */
-/*   Updated: 2022/05/28 18:03:42 by bogdantiyan      ###   ########.fr       */
+/*   Created: 2022/02/08 20:29:15 by hbecki            #+#    #+#             */
+/*   Updated: 2022/06/21 19:24:02 by hbecki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex.h"
 
-void	ft_putstr_fd(char *s, int fd)
+char	**ft_get_path(char **envp)
 {
-	int		i;
+	char	**ss;
+	char	**s;
 
-	if (s == NULL || fd < 0)
-		return ;
-	i = 0;
-	while (s[i] != '\0')
+	ss = NULL;
+	s = ft_find_word_path(envp);
+	if (s == NULL)
+		return (NULL);
+	else
 	{
-		write(fd, &s[i], 1);
-		i++;
+		ss = ft_split(s[1], ':');
+		ft_split_free(s);
+		return (ss);
 	}
-	write(fd, "\n", 1);
+	return (NULL);
 }
