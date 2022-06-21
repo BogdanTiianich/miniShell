@@ -1,82 +1,65 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: hbecki <hbecki@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/01/11 18:30:43 by hbecki            #+#    #+#              #
-#    Updated: 2022/05/30 13:09:29 by hbecki           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME = minishell
 
-NAME =			builti
+GNL_HEAD = get_next_line/get_next_line.h
 
-HEAD =			./builtins/builtins.h
+SRC = main.c minishell_llist.c minishell_init.c minishell_free_with_str.c minishell_lexer.c minishell_pre_parser.c minishell_parser_next.c \
+		minishell_parser.c minishell_lexer_checks.c minishell_utils.c minishell_utils2.c\
+		minishell_builtins.c
 
-# GNL_HEAD = get_next_line/get_next_line.h
+SRC_PIPEX =	pipex/mandatory/pipex.c\
+	pipex/mandatory/pipex_utils1.c\
+	pipex/mandatory/pipex_utils2.c\
+	pipex/mandatory/pipex_utils3.c\
+	pipex/mandatory/pipex_utils4.c\
+	pipex/mandatory/pipex_list_related_funcs.c\
+	pipex/mandatory/pipex_parsers_searchers.c\
+	pipex/mandatory/pipex_utils5.c
 
-LIBDIR = 		./libft/
+SRC_GNL = get_next_line/get_next_line.c\
+			get_next_line/get_next_line_utils.c
 
-LIBFT = 		libft.a
+OBJ_GNL = $(SRC_GNL:%.c=%.o)
 
-# CHECKERDIR = 	./checker/
+OBJ_PIPEX = $(SRC_PIPEX:%.c=%.o)
 
-# HEAD_BONUS =	./bonus/pipex_bonus.h
+SRC_OBJ = $(SRC:%.c=%.o)
 
-SRC =  builtins/export.c\
-		# mandatory/pipex_utils1.c\
-		# mandatory/pipex_utils2.c\
-		# mandatory/pipex_utils3.c\
-		# mandatory/pipex_utils4.c\
-		# mandatory/pipex_utils5.c
+SRC_D = $(SRC:%.c=%.d)
 
-# SRC_BONUS = bonus/pipex_bonus.c\
-# 		bonus/pipex_utils1_bonus.c\
-# 		bonus/pipex_utils2_bonus.c\
-# 		bonus/pipex_utils3_bonus.c\
-# 		bonus/pipex_utils4_bonus.c\
-# 		bonus/pipex_utils5_bonus.c
+LIBFT = libft.a
 
+CC = cc
 
+CFLAGS = -MD #-Wall -Wextra -Werror
 
-OBJ =			$(SRC:%.c=%.o)
+FSA = -fsanitize=address
 
+LIBDIR = ./libft/
 
+RM = rm -f
 
-D =				$(SRC:%.c=%.d)
+all : libmake $(NAME)
 
-
-
-CFLAGS = 		-Wall -Werror -Wextra
-
-CC = 			gcc
-
-RM = 			rm -f
-
-all : 			libmake $(NAME)
-
-$(NAME) : 		$(OBJ) 
-				@cp $(LIBDIR)$(LIBFT) .
-				$(CC) $(CFLAGS) $(OBJ) libft.a -o $@
 
 libmake :
 				@make -C $(LIBDIR)
 
-	
-%.o : 			%.c
-				$(CC) $(CFLAGS) -I $(HEAD) -c $< -o $@
+%.o: %.c Makefile
+	$(CC) $(CFLAGS) -c $< -o $@
 
-include 		$(wildcard $(D) $(D_BONUS))
+$(NAME): $(SRC_OBJ) $(OBJ_PIPEX) $(SRC_GNL)
+	@cp $(LIBDIR)$(LIBFT) .
+	$(CC) $(SRC_OBJ) $(OBJ_PIPEX) $(SRC_GNL) $(LIBFT) $(FSA) -lreadline -o $@
 
+clean: 
+	@make clean -C $(LIBDIR)
+	$(RM) $(SRC_OBJ) $(SRC_D) $(OBJ_PIPEX)
 
-clean:
-				@make clean -C $(LIBDIR)
-				@$(RM) $(OBJ) $(D) $(D_BONUS) $(OBJ_BONUS) $(OBJ_GNL)
+fclean: clean
+	$(RM) $(NAME)
 
-fclean: 		clean
-				@$(RM) $(NAME) $(LIBFT)
+-include $(SRC_D)
 
-re: 			fclean all
+re: fclean all
 
-.PHONY: 		all clean fclean re bonus
+.PHONY: all clean fclean re
