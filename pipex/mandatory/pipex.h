@@ -6,7 +6,7 @@
 /*   By: hbecki <hbecki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 20:29:47 by hbecki            #+#    #+#             */
-/*   Updated: 2022/06/21 14:18:34 by hbecki           ###   ########.fr       */
+/*   Updated: 2022/06/22 15:56:26 by hbecki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ typedef struct s_vars
 	int		start;
 	int		num_of_processes;
 	int		argc;
+	int		last_flag;
+	int		left_side;
+	int		right_side;
 
 	char	**argv;
 	char	**envp;
@@ -85,7 +88,6 @@ void				ft_print_split(char **s);
 int					ft_strcmp_hand(char *s1, char*s2);
 int					num_of_strings(char const *s, char c);
 char				**ft_find_word_path(char **envp);
-char				**ft_get_path(char **envp);
 int					ft_waiter(t_process_config *process_config);
 t_process_config	*ft_parce_commands(char **arr_of_comands, \
 t_process_config	*process_config);
@@ -100,7 +102,11 @@ char				**ft_get_path_new(char **env);
 char				**ft_get_array(t_commands *list);
 void				*add_to_top(void *list, void *elem, int which_struct);
 char				*ft_create_str(char *str);
-void				ft_handle_write_stuff(t_process_config *process);
-void				ft_handle_read_stuff(t_process_config *process);
 int					ft_heredoc_handler(t_process_config *process);
+void				ft_handle_read_stuff(t_process_config *process);
+void				ft_handle_write_stuff(t_process_config *process);
+void				ft_pipes_creator(t_process_config *process);
+t_process_config	*ft_pipes_layer(t_process_config *process, int fd[2]);
+void				ft_close_pipes(t_process_config *process);
+void				ft_heredoc_runner(t_process_config *process);
 #endif

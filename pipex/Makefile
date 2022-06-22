@@ -6,7 +6,7 @@
 #    By: hbecki <hbecki@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/11 18:30:43 by hbecki            #+#    #+#              #
-#    Updated: 2022/06/14 19:07:34 by hbecki           ###   ########.fr        #
+#    Updated: 2022/06/22 14:03:04 by hbecki           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,6 @@ HEAD_BONUS =	./bonus/pipex_bonus.h
 SRC = pipex/mandatory/pipex.c\
 	pipex/mandatory/pipex_utils1.c\
 	pipex/mandatory/pipex_utils2.c\
-	pipex/mandatory/pipex_utils3.c\
 	pipex/mandatory/pipex_utils4.c\
 	pipex/pipex_parsers_searchers.c\
 	pipex/mandatory/pipex_utils5.c

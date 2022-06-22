@@ -135,15 +135,4 @@ pipex/mandatory/pipex_list_related_funcs.o: \
   pipex/mandatory/../../libft/libft.h \
   pipex/mandatory/../../get_next_line/get_next_line.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include/sys/uio.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include/sys/_types/_iovec_t.h \
-  pipex/mandatory/../../minishell.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include/signal.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include/readline/history.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include/sys/ioctl.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include/sys/ttycom.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include/sys/ioccom.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include/sys/filio.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include/sys/sockio.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include/sys/ttydefaults.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include/readline/readline.h \
-  pipex/mandatory/../../pipex/mandatory/pipex.h
+  /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include/sys/_types/_iovec_t.h

@@ -1,5 +1,5 @@
-pipex/mandatory/pipex_parsers_searchers.o: \
-  pipex/mandatory/pipex_parsers_searchers.c pipex/mandatory/pipex.h \
+pipex/mandatory/pipex_redirects_and_pipes.o: \
+  pipex/mandatory/pipex_redirects_and_pipes.c pipex/mandatory/pipex.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include/sys/types.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include/sys/appleapiopts.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include/sys/cdefs.h \

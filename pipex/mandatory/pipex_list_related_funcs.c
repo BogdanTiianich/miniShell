@@ -6,7 +6,7 @@
 /*   By: hbecki <hbecki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 18:49:41 by hbecki            #+#    #+#             */
-/*   Updated: 2022/06/15 17:09:20 by hbecki           ###   ########.fr       */
+/*   Updated: 2022/06/22 13:52:05 by hbecki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,42 +49,9 @@ void	*add_to_end(void *list, void *elem, int which_struct)
 			tmp4 = tmp4->next;
 		tmp4->next = elem;
 	}
-	
-	// if (which_struct == 1)
-	// {
-	// 	tmp1 = (t_process_config *)list;
-	// 	while (tmp1->next != NULL)
-	// 		tmp1 = tmp1->next;
-	// 	tmp1->next = (t_process_config *)elem;
-	// }	
-	// if (which_struct == 2)
-	// {
-	// 	tmp2 = (t_file *)list;
-	// 	while (tmp2->next != NULL)
-	// 		tmp2 = tmp2->next;
-	// 	tmp2->next = (t_file *)elem;
-	// }
-	// if (which_struct == 3)
-	// {
-	// 	tmp3 = (t_commands *)list;
-	// 	while (tmp3->next != NULL)
-	// 		tmp3 = tmp3->next;
-	// 	tmp3->next = (t_commands *)elem;
-	// }
 	return (list);
 }
 
-// t_lists	*add_to_top(t_lists *list,t_lists *elem)
-// {
-// 	t_lists	*tmp;
-
-// 	if (!list || !elem)
-// 		return (NULL);
-// 	tmp = list;
-// 	elem->next = list;
-// 	list = elem;
-// 	return (list);
-// }
 
 void	*add_to_top(void *list, void *elem, int which_struct)
 {
@@ -119,28 +86,6 @@ void	*add_to_top(void *list, void *elem, int which_struct)
 		tmp4->next = list;
 		list = tmp4;
 	}
-	
-	// if (which_struct == 1)
-	// {
-	// 	tmp1 = (t_process_config *)list;
-	// 	while (tmp1->next != NULL)
-	// 		tmp1 = tmp1->next;
-	// 	tmp1->next = (t_process_config *)elem;
-	// }	
-	// if (which_struct == 2)
-	// {
-	// 	tmp2 = (t_file *)list;
-	// 	while (tmp2->next != NULL)
-	// 		tmp2 = tmp2->next;
-	// 	tmp2->next = (t_file *)elem;
-	// }
-	// if (which_struct == 3)
-	// {
-	// 	tmp3 = (t_commands *)list;
-	// 	while (tmp3->next != NULL)
-	// 		tmp3 = tmp3->next;
-	// 	tmp3->next = (t_commands *)elem;
-	// }
 	return (list);
 }
 
