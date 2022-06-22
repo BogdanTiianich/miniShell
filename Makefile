@@ -8,11 +8,11 @@ SRC = main.c minishell_llist.c minishell_init.c minishell_free_with_str.c minish
 
 SRC_PIPEX =	pipex/mandatory/pipex.c\
 	pipex/mandatory/pipex_utils1.c\
-	pipex/mandatory/pipex_utils2.c\
-	pipex/mandatory/pipex_utils3.c\
-	pipex/mandatory/pipex_utils4.c\
+	pipex/mandatory/pipex_searchers.c\
+	pipex/mandatory/pipex_redirects_and_pipes.c\
+	pipex/mandatory/pipex_heredoc.c\
 	pipex/mandatory/pipex_list_related_funcs.c\
-	pipex/mandatory/pipex_parsers_searchers.c\
+	pipex/mandatory/pipex_parser_for_command.c\
 	pipex/mandatory/pipex_utils5.c
 
 SRC_GNL = get_next_line/get_next_line.c\
