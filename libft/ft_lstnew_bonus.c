@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbecki <hbecki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 17:53:59 by hbecki            #+#    #+#             */
-/*   Updated: 2021/10/16 18:26:39 by hbecki           ###   ########.fr       */
+/*   Updated: 2022/06/24 15:07:45 by hbecki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+t_lists	*ft_lstnew(void *content)
 {
-	t_list	*new;
+	t_lists	*new;
 
-	new = (t_list *)malloc(sizeof(t_list));
+	new = (t_lists *)malloc(sizeof(t_lists));
 	if (new == NULL)
 		return (NULL);
 	new->next = NULL;
