@@ -6,7 +6,7 @@
 /*   By: hbecki <hbecki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 20:29:15 by hbecki            #+#    #+#             */
-/*   Updated: 2022/06/21 18:23:32 by hbecki           ###   ########.fr       */
+/*   Updated: 2022/06/25 15:46:32 by hbecki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,10 +119,12 @@ char	*ft_create_str(char *str)
 	ft_check_malloc(tmp);
 	if (len == 0)
 	{
-		printf("LEN 0\n");
+		// printf("LEN 0\n");
 		tmp[0] = '\0';
 		return (tmp);
 	}
 	ft_strlcpy(tmp, str, len);
+	// printf("%d len %s\n", len, tmp);
+	// ft_putstr_fd(str, 1);
 	return (tmp);
 }

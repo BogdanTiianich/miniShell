@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbecki <hbecki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:50:08 by hbecki            #+#    #+#             */
-/*   Updated: 2021/10/16 18:26:42 by hbecki           ###   ########.fr       */
+/*   Updated: 2022/06/24 15:07:45 by hbecki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *list)
+int	ft_lstsize(t_lists *list)
 {
-	t_list	*tmp_list;
+	t_lists	*tmp_list;
 	int		i;
 
 	i = 0;

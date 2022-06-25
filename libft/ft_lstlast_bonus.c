@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbecki <hbecki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 14:52:20 by hbecki            #+#    #+#             */
-/*   Updated: 2021/10/16 18:26:33 by hbecki           ###   ########.fr       */
+/*   Updated: 2022/06/24 15:07:45 by hbecki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+t_lists	*ft_lstlast(t_lists *lst)
 {
-	t_list	*tmp_l;
+	t_lists	*tmp_l;
 
 	tmp_l = lst;
 	if (lst == NULL)

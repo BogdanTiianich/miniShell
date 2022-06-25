@@ -6,7 +6,7 @@
 /*   By: hbecki <hbecki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 20:29:47 by hbecki            #+#    #+#             */
-/*   Updated: 2022/06/22 15:56:26 by hbecki           ###   ########.fr       */
+/*   Updated: 2022/06/25 16:41:58 by hbecki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # include <errno.h> /* содержит объявления для errno */
 # include "../../libft/libft.h"
 # include "../../get_next_line/get_next_line.h"
-// # include "../../minishell.h"
 
 typedef struct s_vars
 {
@@ -82,7 +81,7 @@ typedef struct s_process_config
 int					ft_split_print(char **s);
 void				ft_free(void *pointer);
 int					ft_split_free(char **s);
-void				ft_errors(int code);
+int					ft_errors(int code, char *str);
 char				*ft_check_access(char *command_name, char **path);
 void				ft_print_split(char **s);
 int					ft_strcmp_hand(char *s1, char*s2);
@@ -99,7 +98,7 @@ t_file				*ft_create_file_elem(char *file_name, int type_flag);
 t_commands			*ft_create_command_elem(char *command_name);
 char				*ft_check_access_new(char *cmd, char **paths);
 char				**ft_get_path_new(char **env);
-char				**ft_get_array(t_commands *list);
+char				**ft_get_array_com(t_commands *list);
 void				*add_to_top(void *list, void *elem, int which_struct);
 char				*ft_create_str(char *str);
 int					ft_heredoc_handler(t_process_config *process);

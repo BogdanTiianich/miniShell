@@ -6,7 +6,7 @@
 /*   By: hbecki <hbecki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 20:29:15 by hbecki            #+#    #+#             */
-/*   Updated: 2022/06/22 15:52:41 by hbecki           ###   ########.fr       */
+/*   Updated: 2022/06/25 16:22:02 by hbecki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	**ft_get_path_new(char **env)
 	char	**paths;
 
 	i = 0;
-	while (ft_strncmp(env[i], "PATH", 4) != 0 && env[i] != NULL)
+	while (env[i] != NULL && ft_strncmp(env[i], "PATH", 4) != 0)
 		i++;
 	if (env[i] == NULL)
 		return (NULL);
@@ -33,7 +33,7 @@ char	**ft_get_path_new(char **env)
 	return (paths);
 }
 
-char	**ft_get_array(t_commands *list)
+char	**ft_get_array_com(t_commands *list)
 {
 	t_commands	*tmp;
 	int			count;
@@ -60,6 +60,33 @@ char	**ft_get_array(t_commands *list)
 	return (arr);
 }
 
+char	**ft_get_array_list(t_lists *list)
+{
+	t_lists		*tmp;
+	int			count;
+	char		**arr;
+
+	tmp = list;
+	count = 0;
+	while (tmp)
+	{
+		tmp = tmp->next;
+		count++;
+	}
+	arr = (char **)malloc(sizeof(char *) * (count + 1));
+	ft_check_malloc(arr);
+	tmp = list;
+	count = 0;
+	while (tmp)
+	{
+		arr[count] = ft_strjoin(tmp->key, tmp->value);
+		tmp = tmp->next;
+		count++;
+	}
+	arr[count] = NULL;
+	return (arr);
+}
+
 char	*ft_check_access_new(char *cmd, char **paths)
 {
 	char	*path;
@@ -67,6 +94,8 @@ char	*ft_check_access_new(char *cmd, char **paths)
 	char	*s;
 	char	*tmp;
 
+	if (paths == NULL)
+		return (NULL);
 	if (access(cmd, 1) == -1)
 	{
 		i = 0;
@@ -83,5 +112,5 @@ char	*ft_check_access_new(char *cmd, char **paths)
 			i++;
 		}
 	}
-	return (ft_create_str("no command\0"));//???
+	return (NULL);
 }

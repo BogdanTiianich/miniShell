@@ -6,7 +6,7 @@
 /*   By: hbecki <hbecki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 20:29:15 by hbecki            #+#    #+#             */
-/*   Updated: 2022/06/22 15:53:51 by hbecki           ###   ########.fr       */
+/*   Updated: 2022/06/25 16:40:29 by hbecki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ft_waiter(t_process_config *process_config)
 	{
 		if (waitpid(tmp->id, NULL, 0) == -1)
 			return (1);
-		printf("WAITING for %d\n", tmp->id);
+		// printf("WAITING for %d\n", tmp->id);
 		tmp = tmp->next;
 	}
 }
@@ -54,12 +54,13 @@ char	**commands, t_info *info, char **paths)
 {
 	t_process_config	*tmp;
 	int					fd[2];
+	char				*cmd;
 
 	tmp = process_config;
 	while (tmp != NULL)
 	{
-		commands = ft_get_array(tmp->command);
-		commands[0] = ft_check_access_new(commands[0], paths);
+		commands = ft_get_array_com(tmp->command);
+		cmd = ft_check_access_new(commands[0], paths);
 		ft_heredoc_handler(tmp);
 		tmp = ft_pipes_layer(tmp, fd);
 		tmp->id = fork();
@@ -68,13 +69,19 @@ char	**commands, t_info *info, char **paths)
 			ft_handle_read_stuff(tmp);
 			ft_handle_write_stuff(tmp);
 			ft_close_pipes(process_config);
+			if (cmd == NULL)
+			{
+				ft_errors(123, commands[0]);
+				exit (1);
+			}
 			if (ft_check_if_builtins(tmp, info) == 1)
 				exit(1);
-			execve(commands[0], \
+			execve(cmd, \
 			commands, info->envp);
+			ft_errors(1, "\0");
 			exit(1);
-			ft_errors(1);
 		}
+		free(cmd);
 		tmp = tmp->next;
 	}
 	return (process_config);
@@ -88,18 +95,25 @@ int	ft_pipex(char **arr_of_comands, t_info *info)
 	char				**commands;
 	char				*cmd;
 
+	// printf("IM IN\n");
+	// exit(1);
 	process_config = ft_parce_commands(arr_of_comands, process_config);
 	if (process_config == NULL)
 		return (0);
 	if (process_config->im_last_flag == 1)
 	{
+		// ft_env(info);
 		if (ft_check_if_builtins(process_config, info) == 1)
+		{
+			// ft_env(info);
 			return (1);
+		}
+			
 	}
 	paths = ft_get_path_new(info->envp);
 	process_config = ft_multi_exec(process_config, \
 commands, info, paths);
 	ft_close_pipes(process_config);
 	ft_waiter(process_config);
-	printf("FINISH\n");
+	// printf("FINISH\n");
 }

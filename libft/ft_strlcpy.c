@@ -6,7 +6,7 @@
 /*   By: hbecki <hbecki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 13:25:44 by hbecki            #+#    #+#             */
-/*   Updated: 2021/10/20 17:55:40 by hbecki           ###   ########.fr       */
+/*   Updated: 2022/06/25 14:41:49 by hbecki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ size_t	ft_strlcpy(char *restrict dst, const char *restrict src, size_t dstsize)
 	i = 0;
 	if (dstsize == 0)
 		return (ft_strlen(src_in));
-	while ((i < dstsize - 1) && (src_in[i] != '\0'))
+	while ((i < dstsize) && (src_in[i] != '\0'))
 	{
 		dst_in[i] = src_in[i];
 		i++;

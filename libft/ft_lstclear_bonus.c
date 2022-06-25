@@ -6,16 +6,16 @@
 /*   By: hbecki <hbecki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 15:17:57 by hbecki            #+#    #+#             */
-/*   Updated: 2021/10/18 20:30:45 by hbecki           ###   ########.fr       */
+/*   Updated: 2022/06/24 15:07:45 by hbecki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void	ft_lstclear(t_lists **lst, void (*del)(void *))
 {
-	t_list	*tmp;
-	t_list	*next;
+	t_lists	*tmp;
+	t_lists	*next;
 
 	tmp = *lst;
 	*lst = NULL;
