@@ -113,6 +113,7 @@ int			f(t_command *command);
 int			skip_words(int token, char *p, int *i);
 
 int			ft_pipex(char **arr_of_comands, t_info *info);
+t_info		*ft_waiter(t_process_config *process_config, t_info *info);
 int			ft_heredoc_handler(t_process_config *process);
 //BUILTS
 // int			ft_check_if_builtins(t_process_config *process);
@@ -130,5 +131,24 @@ int			ft_check_n_arg_echo(char *arg);
 void		ft_exit(char **arr);
 char		**ft_get_array_list(t_lists *list);
 char		**ft_get_array_com(t_commands *list);
+void		ft_echo_part(char **arr);
+void		ft_echo(char **arr);
+void		ft_exit(char **arr);
+void		ft_cd_part(char **old_pwd, char **current_pwd, char ***tmp);
+t_lists		*ft_cd(char *path, t_lists **env);
+void		ft_export_with_no_args(t_lists *list);
+int			ft_check_name_export(char **key_value, char **elems, int *i);
+int			ft_export_find_place(t_lists *env, t_lists **prev_elem_env, \
+char **key_value, int *match_flag);
+t_lists		*ft_export_place_new_el(int match_flag, t_lists \
+*prev_elem_env, t_lists *env, char **key_value);
+t_lists		*ft_export(t_lists *env, char **elems);
+int			ft_check_exit_arg(char **arg);
+int			ft_exp_uns_name(char *arg);
+char		**ft_exp_uns_parser(char *arg);
+void		*ft_get_val_by_key(t_lists *list, char *key_needed);
+int			ft_chech_words(t_process_config *process, t_info *info);
+void		ft_check_builtins_part1(t_process_config *process, t_info *info);
+
 
 #endif

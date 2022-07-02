@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbecki <hbecki@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bogdantiyanich <bogdantiyanich@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:39:19 by mmeredit          #+#    #+#             */
-/*   Updated: 2022/06/24 15:45:59 by hbecki           ###   ########.fr       */
+/*   Updated: 2022/07/02 10:56:20 by bogdantiyan      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,9 @@ int	main(int ag, char **av, char **env)
 				command = pre_parser(&info, p);
 				str = parser(&command);
 				if (str[0] != NULL)
+				{
 					ft_pipex(str, &info);
+				}	
 			}
 			// print_command(str);
 			str = ft_free_array(str);

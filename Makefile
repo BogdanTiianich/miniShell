@@ -4,15 +4,18 @@ GNL_HEAD = get_next_line/get_next_line.h
 
 SRC = main.c minishell_llist.c minishell_init.c minishell_free_with_str.c minishell_lexer.c minishell_pre_parser.c minishell_parser_next.c \
 		minishell_parser.c minishell_lexer_checks.c minishell_utils.c minishell_utils2.c\
-		minishell_builtins.c minishell_signals.c
+		minishell_builtins.c minishell_signals.c minishell_builtins_1.c minishell_builtins_2.c\
+		minishell_builtins_3.c minishell_builtins_4.c
 
 SRC_PIPEX =	pipex/mandatory/pipex.c\
 	pipex/mandatory/pipex_utils1.c\
 	pipex/mandatory/pipex_searchers.c\
 	pipex/mandatory/pipex_redirects_and_pipes.c\
+	pipex/mandatory/pipex_redirects_and_pipes_1.c\
 	pipex/mandatory/pipex_heredoc.c\
 	pipex/mandatory/pipex_list_related_funcs.c\
 	pipex/mandatory/pipex_parser_for_command.c\
+	pipex/mandatory/pipex_free.c\
 	pipex/mandatory/pipex_utils5.c
 
 SRC_GNL = get_next_line/get_next_line.c\
@@ -30,7 +33,7 @@ LIBFT = libft.a
 
 CC = cc
 
-CFLAGS = -MD #-Wall -Wextra -Werror
+CFLAGS = -MD -Wall -Wextra -Werror
 
 FSA =  -g -fsanitize=address
 
