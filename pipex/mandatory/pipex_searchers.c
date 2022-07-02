@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_searchers.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbecki <hbecki@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bogdantiyanich <bogdantiyanich@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 20:29:15 by hbecki            #+#    #+#             */
-/*   Updated: 2022/06/25 16:22:02 by hbecki           ###   ########.fr       */
+/*   Updated: 2022/07/02 12:21:43 by bogdantiyan      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ char	**ft_get_array_list(t_lists *list)
 
 char	*ft_check_access_new(char *cmd, char **paths)
 {
-	char	*path;
 	int		i;
 	char	*s;
 	char	*tmp;

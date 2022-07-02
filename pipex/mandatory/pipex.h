@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbecki <hbecki@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bogdantiyanich <bogdantiyanich@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 20:29:47 by hbecki            #+#    #+#             */
-/*   Updated: 2022/06/25 16:41:58 by hbecki           ###   ########.fr       */
+/*   Updated: 2022/07/02 12:18:50 by bogdantiyan      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct s_vars
 	int		last_flag;
 	int		left_side;
 	int		right_side;
+	int		saved_dup_read;
+	int		saved_dup_write;
 
 	char	**argv;
 	char	**envp;
@@ -55,7 +57,7 @@ typedef struct s_lists
 typedef struct s_file
 {
 	char				*file;
-	int					type_flag;//0-heredoc, 1-input, 2-output, 3-output_append
+	int					type_flag;
 	struct s_file		*next;
 }	t_file;
 typedef struct s_commands
@@ -87,7 +89,7 @@ void				ft_print_split(char **s);
 int					ft_strcmp_hand(char *s1, char*s2);
 int					num_of_strings(char const *s, char c);
 char				**ft_find_word_path(char **envp);
-int					ft_waiter(t_process_config *process_config);
+
 t_process_config	*ft_parce_commands(char **arr_of_comands, \
 t_process_config	*process_config);
 
@@ -102,10 +104,15 @@ char				**ft_get_array_com(t_commands *list);
 void				*add_to_top(void *list, void *elem, int which_struct);
 char				*ft_create_str(char *str);
 int					ft_heredoc_handler(t_process_config *process);
-void				ft_handle_read_stuff(t_process_config *process);
+int					ft_handle_read_stuff(t_process_config *process);
 void				ft_handle_write_stuff(t_process_config *process);
 void				ft_pipes_creator(t_process_config *process);
 t_process_config	*ft_pipes_layer(t_process_config *process, int fd[2]);
 void				ft_close_pipes(t_process_config *process);
 void				ft_heredoc_runner(t_process_config *process);
+int					ft_free_commands(t_commands *commands);
+int					ft_free_files(t_file *files);
+int					ft_free_processes(t_process_config *process);
+void				ft_print_list(t_process_config *list);
+
 #endif

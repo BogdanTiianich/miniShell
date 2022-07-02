@@ -3,42 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_redirects_and_pipes.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbecki <hbecki@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bogdantiyanich <bogdantiyanich@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 20:29:15 by hbecki            #+#    #+#             */
-/*   Updated: 2022/06/24 17:20:03 by hbecki           ###   ########.fr       */
+/*   Updated: 2022/07/02 12:22:13 by bogdantiyan      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_handle_read_stuff(t_process_config *process)
+int	ft_handle_read_stuff_part(t_process_config *process, t_file	*file)
+{
+	int		fd;
+
+	if (file->type_flag == 0)
+	{
+		if (dup2(process->here_doc_pipes[0], 0) == -1)
+			ft_errors(1, "\0");
+		close(process->here_doc_pipes[0]);
+		close(process->here_doc_pipes[1]);
+	}
+	if (file->type_flag == 1)
+	{
+		fd = open(file->file, O_RDONLY);
+		if (fd == -1)
+		{
+			ft_errors(562, file->file);
+			return (1);
+		}
+		if (dup2(fd, 0) == -1)
+			ft_errors(1, "\0");
+	}
+	return (0);
+}
+
+int	ft_handle_read_stuff(t_process_config *process)
 {
 	t_file	*file;
-	int		fd;
 
 	if (process->from_prev_pipe != -1)
 		dup2(process->from_prev_pipe, 0);
 	file = process->read_files;
 	while (file != NULL)
 	{
-		if (file->type_flag == 0)
-		{
-			if (dup2(process->here_doc_pipes[0], 0) == -1)
-				ft_errors(1, "\0");
-			close(process->here_doc_pipes[0]);
-			close(process->here_doc_pipes[1]);
-		}
-		if (file->type_flag == 1)
-		{
-			fd = open(file->file, O_RDONLY);
-			if (fd == -1)
-				ft_errors(1, "\0");
-			if (dup2(fd, 0) == -1)
-				ft_errors(1, "\0");
-		}
+		if (ft_handle_read_stuff_part(process, file))
+			return (1);
 		file = file->next;
 	}
+	return (0);
 }
 
 void	ft_handle_write_stuff(t_process_config *process)
@@ -59,7 +71,10 @@ void	ft_handle_write_stuff(t_process_config *process)
 		if (file->type_flag == 2 || file->type_flag == 3)
 		{
 			if (fd == -1)
-				ft_errors(1, "\0");
+			{
+				ft_errors(339, file->file);
+				exit(339);
+			}
 			if (dup2(fd, 1) == -1)
 				ft_errors(1, "\0");
 		}
@@ -69,42 +84,10 @@ void	ft_handle_write_stuff(t_process_config *process)
 
 void	ft_pipes_creator(t_process_config *process)
 {
-	t_process_config	*tmp;
-
 	if (process->heredoc != NULL)
 	{
 		process->here_doc_pipes = (int *)malloc(sizeof(int) * 2);
 		if (pipe(process->here_doc_pipes) != 0)
 			ft_errors(1, "\0");
-	}
-}
-
-t_process_config	*ft_pipes_layer(t_process_config *process, int fd[2])
-{
-	if (process->im_last_flag != 1)
-	{
-		if (pipe(fd) == -1)
-			ft_errors(1, "\0");
-		process->to_next_pipe = fd[1];
-		process->next->from_prev_pipe = fd[0];
-	}
-	return (process);
-}
-
-void	ft_close_pipes(t_process_config *process)
-{
-	t_process_config	*tmp;
-
-	tmp = process;
-	while (tmp != NULL)
-	{
-		close(tmp->from_prev_pipe);
-		close(tmp->to_next_pipe);
-		if (tmp->here_doc_pipes != NULL)
-		{
-			close(tmp->here_doc_pipes[0]);
-			close(tmp->here_doc_pipes[1]);
-		}
-		tmp = tmp->next;
 	}
 }

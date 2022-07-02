@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_heredoc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbecki <hbecki@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bogdantiyanich <bogdantiyanich@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 20:29:15 by hbecki            #+#    #+#             */
-/*   Updated: 2022/06/24 17:20:15 by hbecki           ###   ########.fr       */
+/*   Updated: 2022/07/02 12:22:47 by bogdantiyan      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	ft_heredoc_runner(t_process_config *process)
 int	ft_heredoc_handler(t_process_config *process)
 {
 	int		id;
-	char	*str;
 
 	if (process->heredoc != NULL)
 	{
@@ -54,4 +53,5 @@ int	ft_heredoc_handler(t_process_config *process)
 			ft_heredoc_runner(process);
 		waitpid(id, NULL, 0);
 	}
+	return (0);
 }

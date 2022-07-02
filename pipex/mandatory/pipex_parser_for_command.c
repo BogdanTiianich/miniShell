@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_parser_for_command.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbecki <hbecki@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bogdantiyanich <bogdantiyanich@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 19:00:35 by hbecki            #+#    #+#             */
-/*   Updated: 2022/06/22 16:07:16 by hbecki           ###   ########.fr       */
+/*   Updated: 2022/07/02 10:53:11 by bogdantiyan      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,40 +74,40 @@ t_process_config	*ft_parce_one_command(t_process_config \
 	return (a_command);
 }
 
+void	ft_parce_command_part(t_vars *vars, t_process_config **process_config)
+{
+	*process_config = NULL;
+	vars->count = 0;
+	vars->last_flag = 0;
+	vars->right_side = 0;
+	vars->left_side = 0;
+}
+
 t_process_config	*ft_parce_commands(char **arr_of_comands, \
 t_process_config	*process_config)
 {
 	int					j;
-	int					last_flag;
-	int					left_side;
-	int					right_side;
 	t_vars				vars;
 	t_process_config	*tmp;
-	int					count;
 
-	process_config = NULL;
-	count = 0;
-	last_flag = 0;
-	right_side = 0;
-	left_side = 0;
+	ft_parce_command_part(&vars, &process_config);
 	while (2)
 	{
-		while (arr_of_comands[right_side] != NULL && \
-		ft_strncmp(arr_of_comands[right_side], "|\0", 1) != 0)
-			right_side++;
-		if (arr_of_comands[right_side] == NULL)
-			last_flag = 1;
-		tmp = ft_create_proc_elem(count);
-		count++;
-		j = left_side;
-		tmp = ft_parce_one_command(tmp, j, arr_of_comands, right_side);
-		tmp->im_last_flag = last_flag;
+		while (arr_of_comands[vars.right_side] != NULL && \
+		ft_strncmp(arr_of_comands[vars.right_side], "|\0", 1) != 0)
+			vars.right_side++;
+		if (arr_of_comands[vars.right_side] == NULL)
+			vars.last_flag = 1;
+		tmp = ft_create_proc_elem(vars.count);
+		vars.count++;
+		j = vars.left_side;
+		tmp = ft_parce_one_command(tmp, j, arr_of_comands, vars.right_side);
+		tmp->im_last_flag = vars.last_flag;
 		process_config = (t_process_config *)add_to_end(process_config, tmp, 1);
-		if (last_flag == 1)
+		if (vars.last_flag == 1)
 			break ;
-		left_side = right_side + 1;
-		right_side += 1;
+		vars.left_side = vars.right_side + 1;
+		vars.right_side += 1;
 	}
 	return (process_config);
 }
-

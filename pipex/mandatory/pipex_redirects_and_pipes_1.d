@@ -1,5 +1,5 @@
-pipex/mandatory/pipex_list_related_funcs.o: \
-  pipex/mandatory/pipex_list_related_funcs.c pipex/mandatory/pipex.h \
+pipex/mandatory/pipex_redirects_and_pipes_1.o: \
+  pipex/mandatory/pipex_redirects_and_pipes_1.c pipex/mandatory/pipex.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/types.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/appleapiopts.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/cdefs.h \
