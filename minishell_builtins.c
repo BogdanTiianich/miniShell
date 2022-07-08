@@ -6,7 +6,7 @@
 /*   By: bogdantiyanich <bogdantiyanich@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 15:39:44 by hbecki            #+#    #+#             */
-/*   Updated: 2022/07/02 12:17:41 by bogdantiyan      ###   ########.fr       */
+/*   Updated: 2022/07/04 22:42:58 by bogdantiyan      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_lists	*ft_create_list_elem(char *key, char *value)
 
 int	ft_chech_words(t_process_config *process, t_info *info)
 {
+	if (process->command == NULL)
+		return (0);
 	if (ft_strncmp(process->command->command, PWD, ft_strlen(PWD)) == 0 || \
 	ft_strncmp(process->command->command, ENV, ft_strlen(ENV)) == 0 || \
 	ft_strncmp(process->command->command, EXPORT, ft_strlen(EXPORT)) == 0 || \

@@ -30,7 +30,7 @@
 # define ECHO "echo\0"
 # define EXIT "exit\0"
 
-extern char **environ;
+extern char	**environ;
 
 # define NOTMALLOC -1
 
@@ -40,14 +40,14 @@ typedef struct s_token
 	struct s_token	*next;
 }	t_token;
 
-typedef	struct s_command
+typedef struct s_command
 {
 	char				*str;
 	int					flag;
 	struct s_command	*next;
 }	t_command;
 
-typedef	struct s_errors
+typedef struct s_errors
 {
 	int	flag;
 	int	error;

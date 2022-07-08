@@ -6,7 +6,7 @@
 /*   By: bogdantiyanich <bogdantiyanich@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:14:57 by bogdantiyan       #+#    #+#             */
-/*   Updated: 2022/07/02 12:19:53 by bogdantiyan      ###   ########.fr       */
+/*   Updated: 2022/07/06 20:19:15 by bogdantiyan      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
