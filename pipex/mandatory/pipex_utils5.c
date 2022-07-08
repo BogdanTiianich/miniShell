@@ -6,7 +6,7 @@
 /*   By: bogdantiyanich <bogdantiyanich@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 20:29:15 by hbecki            #+#    #+#             */
-/*   Updated: 2022/07/02 12:26:38 by bogdantiyan      ###   ########.fr       */
+/*   Updated: 2022/07/06 20:58:53 by bogdantiyan      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,23 @@ char	**commands, char	*cmd, t_process_config	*tmp)
 		ft_close_pipes(process_config);
 		if (cmd == NULL)
 		{
-			ft_errors(300, commands[0]);
+			if (commands != NULL)
+				ft_errors(300, commands[0]);
 			exit (1);
 		}
 	}
+}
+
+t_process_config	*ft_multi_exec_part(char **cmd, \
+char	***commands, t_process_config *tmp, char **paths)
+{
+	if (tmp->command != NULL)
+	{
+		*commands = ft_get_array_com(tmp->command);
+		*cmd = ft_check_access_new((*commands)[0], paths);
+	}	
+	ft_heredoc_handler(tmp);
+	return (tmp);
 }
 
 t_process_config	*ft_multi_exec(t_process_config *process_config, \
@@ -56,11 +69,10 @@ char	**commands, t_info *info, char **paths)
 	char				*cmd;
 
 	tmp = process_config;
+	cmd = NULL;
 	while (tmp != NULL)
 	{
-		commands = ft_get_array_com(tmp->command);
-		cmd = ft_check_access_new(commands[0], paths);
-		ft_heredoc_handler(tmp);
+		tmp = ft_multi_exec_part(&cmd, &commands, tmp, paths);
 		tmp = ft_pipes_layer(tmp, fd);
 		tmp->id = fork();
 		if (tmp->id == 0)
@@ -69,7 +81,7 @@ char	**commands, t_info *info, char **paths)
 			if (ft_check_if_builtins(tmp, info) == 1)
 				exit(1);
 			execve(cmd, commands, info->envp);
-			ft_errors(1, "\0");
+			ft_errors(121212, "\0");
 			exit(1);
 		}
 		free(cmd);

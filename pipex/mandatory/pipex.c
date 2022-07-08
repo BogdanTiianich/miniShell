@@ -6,7 +6,7 @@
 /*   By: bogdantiyanich <bogdantiyanich@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 20:29:15 by hbecki            #+#    #+#             */
-/*   Updated: 2022/07/02 10:59:56 by bogdantiyan      ###   ########.fr       */
+/*   Updated: 2022/07/06 21:07:25 by bogdantiyan      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,9 @@ int	ft_errors(int code, char *str)
 {
 	char	*sada;
 
-	ft_putnbr_fd(code, 2);
 	sada = ft_create_str(str);
+	if (code == 121212)
+		printf("minishell: : command not found\n");
 	if (code == 5454)
 		printf("minishell: export: '%s' not a valid identifer\n", sada);
 	if (code == 523)
